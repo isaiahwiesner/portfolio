@@ -15,7 +15,9 @@ const app = firebase.initializeApp({
 // Firestore (Database) Variables
 export const firestore = app.firestore()
 export const database = {
-    users: firestore.collection("users")
+    users: firestore.collection("users"),
+    projects: firestore.collection("projects"),
+    messages: firestore.collection("messages"),
 }
 
 // Storage
@@ -25,3 +27,24 @@ export const storage = app.storage()
 export const auth = app.auth()
 export const GoogleAuthProvider = new firebase.auth.GoogleAuthProvider()
 export const FacebookAuthProvider = new firebase.auth.FacebookAuthProvider()
+
+// Pretty Errors
+export function prettifyError(e) {
+    if (!e.includes("Firebase:")) return e
+    const error = e.split("(")[1].split(")")[0]
+    console.log(error)
+    switch (error) {
+        case "auth/email-already-exists":
+            return "Email already in use."
+        case "auth/insufficient-permission":
+            return "You do not have access to this resource."
+        case "auth/invalid-credential":
+            return "Invalid username or password."
+        case "auth/invalid-password":
+            return "Password too weak."
+        case "auth/too-many-requests":
+            return "This account has been temporarily disabled. Please change your password or try again later."
+        default:
+            return e
+    }
+}

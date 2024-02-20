@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
-import { auth, GoogleAuthProvider, FacebookAuthProvider } from "../functions/firebase"
+import { auth, GoogleAuthProvider, FacebookAuthProvider, database } from "../functions/firebase"
+import User from "../models/User"
 
 const AuthContext = React.createContext()
 
@@ -44,6 +45,14 @@ export function AuthProvider({ children }) {
         return auth.signInWithEmailAndPassword(email, password)
     }
 
+    async function logInWithUsernameAndPassword(username, password) {
+        const q = database.users.where("username", "==", username.toLowerCase())
+        const snap = await q.get()
+        if (snap.size === 0) throw new Error("Invalid username or password.")
+        const user = new User(snap.docs[0].data())
+        return logInWithEmailAndPassword(user.email, password) 
+    }
+
     function logOut() {
         return auth.signOut()
     }
@@ -63,6 +72,7 @@ export function AuthProvider({ children }) {
         signInWithFacebook,
         signUpWithEmailAndPassword,
         logInWithEmailAndPassword,
+        logInWithUsernameAndPassword,
         logOut,
         sendEmailVerification,
         sendPasswordReset
@@ -70,7 +80,7 @@ export function AuthProvider({ children }) {
 
     return (
         <AuthContext.Provider value={value}>
-            {loading ? null : children}
+            {loading ? null : children && children}
         </AuthContext.Provider>
     )
 }
