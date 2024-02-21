@@ -22,7 +22,7 @@ export default function Project() {
         const unsubscribe = async () => {
             await loadPortfolio()
         }
-        return unsubscribe
+        unsubscribe()
     }, [])
 
     useEffect(() => {

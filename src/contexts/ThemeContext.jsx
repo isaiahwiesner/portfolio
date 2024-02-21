@@ -49,7 +49,7 @@ export function ThemeProvider({ children }) {
             }
             setLoading(false)
         }
-        return unsubscribe
+        unsubscribe()
     }, [loading])
 
     const value = {

@@ -20,7 +20,7 @@ export function PortfolioProvider({ children }) {
         const unsubscribe = async () => {
             await loadPortfolio()
         }
-        return unsubscribe
+        unsubscribe()
     }, [])
 
     useEffect(() => {
