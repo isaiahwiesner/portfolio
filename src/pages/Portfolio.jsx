@@ -17,7 +17,7 @@ export default function Portfolio() {
         const unsubscribe = async () => {
             await loadPortfolio()
         }
-        return unsubscribe
+        unsubscribe()
     }, [])
 
 
