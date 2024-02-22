@@ -13,15 +13,16 @@ export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null)
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
             if (user == null) {
                 setCurrentUser(null)
                 setLoading(false)
             }
             else {
-                console.log(user)
+                const userData = await User.getUserByUID(user.uid);
                 setCurrentUser({
-                    uid: user.uid
+                    uid: user.uid,
+                    ...userData
                 })
                 setLoading(false)
             }
@@ -50,7 +51,7 @@ export function AuthProvider({ children }) {
         const snap = await q.get()
         if (snap.size === 0) throw new Error("Invalid username or password.")
         const user = new User(snap.docs[0].data())
-        return logInWithEmailAndPassword(user.email, password) 
+        return logInWithEmailAndPassword(user.email, password)
     }
 
     function logOut() {

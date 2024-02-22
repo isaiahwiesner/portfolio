@@ -70,3 +70,7 @@ export const useDebounce = (callback, delay) => {
     }
     return debouncedCallback
 }
+
+export const getCurrentPath = () => {
+    return window.location.pathname.replaceAll(/(?=.+)\/$/g, "").slice(1)
+}

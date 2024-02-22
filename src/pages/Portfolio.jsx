@@ -72,11 +72,6 @@ export default function Portfolio() {
                         <h3 className="text-center">No projects to display.</h3>
                     </div>
                 )}
-                <p className="text-center">
-                    <Link className="link" to="/admin">
-                        Edit this page
-                    </Link>
-                </p>
             </div>
         </HelmetProvider>
     )

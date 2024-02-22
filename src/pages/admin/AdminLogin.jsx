@@ -25,6 +25,7 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault()
         setLoading(true)
+        setError("")
         try {
             await logInWithUsernameAndPassword(usernameRef.current.value, passwordRef.current.value)
             setLoading(false)

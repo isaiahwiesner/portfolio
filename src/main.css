@@ -27,7 +27,10 @@
         lg:px-[10%]
         xl:px-[15%];
     }
-    .navbar .nav-item {
+    .admin-nav {
+        @apply w-full h-12 hidden md:flex flex-nowrap items-center scroll-y bg-primary-500 bg-opacity-30;
+    }
+    .navbar .nav-item, .admin-nav .nav-item{
         @apply border-none outline-none px-4
         h-full flex items-center
         text-base xl:text-lg
@@ -37,7 +40,7 @@
         dark:hover:bg-opacity-10 dark:focus:bg-opacity-10
         transition-colors duration-150 ease-in-out;
     }
-    .navbar .nav-item.active {
+    .navbar .nav-item.active, .admin-nav .nav-item.active{
         @apply font-normal text-primary-500 hover:text-primary-500 focus:text-primary-500
         text-base xl:text-lg
         [text-shadow:_0_1px_1.5px_rgb(24_73_97_/_60%)]
@@ -210,6 +213,14 @@
     }
     .btn-primary-transparent:disabled, .btn-primary-transparent:hover:disabled, .btn-primary-transparent:focus:disabled {
         @apply bg-opacity-0 opacity-50;
+    }
+    .btn-error {
+        @apply bg-red-500
+        text-red-50 hover:bg-red-600 focus:bg-red-600
+        dark:text-red-950 dark:hover:bg-red-300 dark:focus:bg-red-300;
+    }
+    .btn-error:disabled, .btn-error:hover:disabled, .btn-error:focus:disabled {
+        @apply bg-red-500 opacity-50;
     }
     .icon-button {
         @apply [&_*]:text-primary-800 dark:[&_*]:text-primary-200
