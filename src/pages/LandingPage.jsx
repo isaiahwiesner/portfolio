@@ -7,8 +7,9 @@ export default function LandingPage() {
         <HelmetProvider>
             <Helmet>
                 <title>Home - Isaiah Wiesner</title>
-                <meta name="og:title" content="Home - Isaiah Wiesner" />
                 <meta name="description" content="Welcome to Isaiah Wiesner's Web Development Portfolio | Software Development and Network Engineering Student - Explore Isaiah Wiesner's projects" />
+                <meta name="og:description" content="Welcome to Isaiah Wiesner's Web Development Portfolio | Software Development and Network Engineering Student - Explore Isaiah Wiesner's projects" />
+                <meta name="og:title" content="Home - Isaiah Wiesner" />
                 <meta name="og:url" content="/" />
             </Helmet>
             <div className="page pt-16 md:pt-32">
